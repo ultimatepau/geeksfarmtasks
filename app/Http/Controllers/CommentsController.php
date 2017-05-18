@@ -36,7 +36,8 @@ class CommentsController extends Controller
     {
         $rules = [
             "id_article" => "required",
-            "comments" => "required"
+            "comments" => "required",
+            "id_users" => "required"
         ];
         $id = $request->id_article;
         $this->validate($request,$rules);

@@ -17,7 +17,10 @@
 	Route::post('login','UsersController@check')->name('login.check');
 	Route::get('logout','UsersController@logout')->name('logout');
 
-	Route::get('/', 'ArticleController@index');
+	Route::get('/', function() {
+		$data['result'] = \App\Article::paginate(10);
+        return view('home')->with($data);
+	});
 	Route::get('detail/{id}', 'ArticleController@show');
 	Route::get('export/{id}', 'ArticleController@download');
 	Route::resource('Article','ArticleController');

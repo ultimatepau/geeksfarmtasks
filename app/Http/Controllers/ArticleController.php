@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Excel;
+
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('sentinel');
+    }
     /**
      * Display a listing of the resource.
      *

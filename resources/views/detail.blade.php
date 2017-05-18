@@ -17,6 +17,7 @@
 			{!! Form::open(['route'=>'Comments.store','method'=>'post','class="form-horizontal'])!!}
 			<div class="form-group">
 				{!! Form::hidden('id_article',$result->id) !!}
+				{!! Form::hidden('id_users',Sentinel::check()->id) !!}
 				{!! Form::textarea('comments','',array('class'=>'form-control','rows'=>'5') )!!}
 				
 			</div>
@@ -28,7 +29,9 @@
 			</div>
 			@foreach ($comments as $item)
 			<div class="col-lg-12 well">
-				<b>Anonim</b><br>
+			<?php $nama = \App\User::select('email')->where('id',$item->id_users)->get(); ?>
+			{{date('Y-m-d H:i:s')}}
+				<b>{{ $nama[0]->email }}</b><br>
 				<i>{{ $item->comments}}</i> <br>
 				{{ $item->created_at }}
 			</div>
