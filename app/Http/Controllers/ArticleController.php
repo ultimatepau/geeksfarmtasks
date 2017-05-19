@@ -67,6 +67,28 @@ class ArticleController extends Controller
         return view('detail')->with($data);
     }
 
+    public function download_detail($id) 
+    {
+        return Excel::create('test',function($excel) use($id) {
+            $excel->sheet('Article',function($sheet) use($id)
+            {
+                $data = \App\Article::select('title','content')->where('id',$id)->get();
+                $sheet->appendRow(array(
+                        'title','content','comments'
+                    ));
+                $datax = \App\Comments::where('id_article',$id)->get();
+                $a = 0;
+                foreach ($datax as $item) {
+                    if ($a == 0) { $sheet->appendRow(array($data[0]->title, $data[0]->content,$item->comments)); }
+                    else { $sheet->appendRow(array('', '',$item->comments)); }
+                    $a++;
+                }
+                
+                
+            });
+        })->export('xlsx');
+    }
+    
     public function download($id)
     {   
 

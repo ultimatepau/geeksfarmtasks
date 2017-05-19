@@ -21,8 +21,11 @@
 		$data['result'] = \App\Article::paginate(10);
         return view('home')->with($data);
 	});
+
 	Route::get('detail/{id}', 'ArticleController@show');
+	Route::get('detail/{id}/export', 'ArticleController@download_detail');
 	Route::get('export/{id}', 'ArticleController@download');
+
 	Route::resource('Article','ArticleController');
 	Route::resource('Comments','CommentsController');
 

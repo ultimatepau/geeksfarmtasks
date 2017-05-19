@@ -13,7 +13,6 @@ class Article extends Model
     ];
 
     public function comments() {
-    	return $this->hasMany('\App\Comments', 'id_article','id');
+    	return $this->hasMany('\App\Comments', 'id_article');
     }
-
 }

@@ -18,7 +18,7 @@ class Comments extends Model
     }
 
     public function user() {
-    	return $this->belongsTo('\App\User','id');
+    	return $this->hasMany('\App\User','id');
     }
     
 }

@@ -5,6 +5,11 @@
 	<div class="row well-sm">
 		<h1>
 			{{ $result->title }}
+			
+				
+					<a href="{{ url('detail/'.$result->id.'/export') }}"><i class="fa fa-download pull-right"></i></a>
+				
+			
 		</h1>
 		<hr>
 		<p>
